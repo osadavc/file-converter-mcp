@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+
+- Never include comments unless absolutely necessary. If a comment is truly required, it must explain "why" something is done, not "how".
+- Never run the project or any scripts. Do not execute commands to "try it out" or "verify". If steps are needed, provide them for the user to run themselves (using bun), but do not run them automatically.

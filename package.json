@@ -1,0 +1,21 @@
+{
+  "name": "file-converter-mcp",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/mime-types": "^2.1.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.3",
+    "sharp": "^0.33.5",
+    "mime-types": "^3.0.1"
+  }
+}
