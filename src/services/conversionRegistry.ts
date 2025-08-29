@@ -5,10 +5,13 @@ import {
   isAudioMimeType,
   resolveVideoTarget,
   isVideoMimeType,
+  resolveDocumentTarget,
+  isDocumentMimeType,
 } from "../lib/mime.ts";
 import { convertImageWithSharp } from "./imageConversion.ts";
 import { convertAudioWithFfmpeg } from "./audioConversion.ts";
 import { convertVideoWithFfmpeg } from "./videoConversion.ts";
+import { convertDocumentWithSoffice } from "./documentConversion.ts";
 
 export type ConversionResult = {
   outputPath: string;
@@ -46,6 +49,14 @@ export const convertDispatch: Converter = async ({
     if (!target) throw new Error("Unsupported target video MIME type");
 
     const outputPath = await convertVideoWithFfmpeg(sourcePath, target);
+    return { outputPath };
+  }
+
+  if (isDocumentMimeType(sourceMimeType)) {
+    const target = resolveDocumentTarget(targetMimeType);
+    if (!target) throw new Error("Unsupported target document MIME type");
+
+    const outputPath = await convertDocumentWithSoffice(sourcePath, target);
     return { outputPath };
   }
 

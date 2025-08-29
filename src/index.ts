@@ -12,7 +12,11 @@ const server = new McpServer({
 
 server.tool(
   "convert_file",
-  "Convert a file to a target MIME type",
+  "Convert a file to a target MIME type. Conversions are within categories (image→image, audio→audio, video→video, documents→documents); cross-category is not supported. You can convert between these types:\n" +
+    "- Images: image/jpeg, image/jpg, image/png, image/webp, image/avif, image/tiff\n" +
+    "- Audio: audio/mpeg, audio/wav, audio/ogg, audio/webm, audio/flac, audio/aac, audio/mp4\n" +
+    "- Video: video/mp4, video/webm, video/ogg, video/x-matroska, video/quicktime\n" +
+    "- Documents: application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.oasis.opendocument.text, application/rtf, text/plain, text/html, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.presentationml.presentation",
   {
     sourcePath: z
       .string()
@@ -26,7 +30,7 @@ server.tool(
         message: "Must be a valid MIME type like application/pdf or image/png",
       })
       .describe(
-        "Desired output MIME type (e.g. application/pdf, image/png, audio/mpeg)"
+        "Desired output MIME type (same-category only). See tool description for supported targets."
       ),
   },
   async ({ sourcePath, targetMimeType }) => {

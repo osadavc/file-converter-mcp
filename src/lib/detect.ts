@@ -1,4 +1,5 @@
 import mime from "mime-types";
+import { isDocumentMimeType } from "./mime.ts";
 import { stat } from "node:fs/promises";
 
 export const detectSourceMime = async (
@@ -12,11 +13,12 @@ export const detectSourceMime = async (
   }
 
   const detected = mime.lookup(sourcePath);
+  if (!detected) return undefined;
   if (
-    detected &&
-    (detected.startsWith("image/") ||
-      detected.startsWith("audio/") ||
-      detected.startsWith("video/"))
+    detected.startsWith("image/") ||
+    detected.startsWith("audio/") ||
+    detected.startsWith("video/") ||
+    isDocumentMimeType(detected)
   )
     return detected;
 
