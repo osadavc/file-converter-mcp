@@ -11,7 +11,7 @@ import {
 import { convertImageWithSharp } from "./imageConversion.ts";
 import { convertAudioWithFfmpeg } from "./audioConversion.ts";
 import { convertVideoWithFfmpeg } from "./videoConversion.ts";
-import { convertDocumentWithSoffice } from "./documentConversion.ts";
+import { convertDocumentWithLibs } from "./documentConversion.ts";
 
 export type ConversionResult = {
   outputPath: string;
@@ -56,7 +56,7 @@ export const convertDispatch: Converter = async ({
     const target = resolveDocumentTarget(targetMimeType);
     if (!target) throw new Error("Unsupported target document MIME type");
 
-    const outputPath = await convertDocumentWithSoffice(sourcePath, target);
+    const outputPath = await convertDocumentWithLibs(sourcePath, target);
     return { outputPath };
   }
 

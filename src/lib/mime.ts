@@ -127,47 +127,31 @@ export const isVideoMimeType = (mime: string): boolean =>
 
 export type DocumentTarget = {
   ext: string;
-  convertTo: string;
+  kind: "pdf" | "html" | "markdown" | "docx" | "text";
 };
 
 export const resolveDocumentTarget = (
   mime: string
 ): DocumentTarget | undefined => {
   const map: Record<string, DocumentTarget> = {
-    "application/pdf": { ext: "pdf", convertTo: "pdf" },
+    "application/pdf": { ext: "pdf", kind: "pdf" },
+    "text/html": { ext: "html", kind: "html" },
+    "text/markdown": { ext: "md", kind: "markdown" },
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
       ext: "docx",
-      convertTo: "docx",
+      kind: "docx",
     },
-    "application/vnd.oasis.opendocument.text": { ext: "odt", convertTo: "odt" },
-    "application/rtf": { ext: "rtf", convertTo: "rtf" },
-    "text/plain": { ext: "txt", convertTo: "txt" },
-    "text/html": { ext: "html", convertTo: "html" },
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
-      ext: "xlsx",
-      convertTo: "xlsx",
-    },
-    "application/vnd.openxmlformats-officedocument.presentationml.presentation":
-      {
-        ext: "pptx",
-        convertTo: "pptx",
-      },
+    "text/plain": { ext: "txt", kind: "text" },
   };
   return map[mime];
 };
 
 const DOCUMENT_MIME_WHITELIST = new Set<string>([
   "application/pdf",
-  "application/msword",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  "application/vnd.oasis.opendocument.text",
-  "application/rtf",
-  "text/plain",
   "text/html",
-  "application/vnd.ms-excel",
-  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  "application/vnd.ms-powerpoint",
-  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  "text/markdown",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "text/plain",
 ]);
 
 export const isDocumentMimeType = (mime: string): boolean =>

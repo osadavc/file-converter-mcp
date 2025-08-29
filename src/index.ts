@@ -16,7 +16,7 @@ server.tool(
     "- Images: image/jpeg, image/jpg, image/png, image/webp, image/avif, image/tiff\n" +
     "- Audio: audio/mpeg, audio/wav, audio/ogg, audio/webm, audio/flac, audio/aac, audio/mp4\n" +
     "- Video: video/mp4, video/webm, video/ogg, video/x-matroska, video/quicktime\n" +
-    "- Documents: application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.oasis.opendocument.text, application/rtf, text/plain, text/html, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "- Documents: application/pdf, text/html, text/markdown, application/vnd.openxmlformats-officedocument.wordprocessingml.document, text/plain",
   {
     sourcePath: z
       .string()
