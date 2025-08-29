@@ -12,7 +12,11 @@ export const detectSourceMime = async (
   }
 
   const detected = mime.lookup(sourcePath);
-  if (detected && detected.startsWith("image/")) return detected;
+  if (
+    detected &&
+    (detected.startsWith("image/") || detected.startsWith("audio/"))
+  )
+    return detected;
 
   return undefined;
 };

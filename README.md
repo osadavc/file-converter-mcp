@@ -7,7 +7,6 @@ This is a file converter MCP.
 ## Supported file types (TODO)
 
 - [x] Images (jpeg, png, webp, avif, tiff)
-- [ ] Audio
+- [x] Audio (mp3, wav, ogg, webm, flac, aac/m4a)
 - [ ] Video
 - [ ] Documents
-- [ ] Archives

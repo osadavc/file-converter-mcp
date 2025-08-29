@@ -57,11 +57,12 @@ server.tool(
         ],
       };
     } catch (err) {
+      const message = err instanceof Error ? err.message : "Conversion failed.";
       return {
         content: [
           {
             type: "text",
-            text: "Not implemented yet for these MIME types.",
+            text: message,
           },
         ],
       };
