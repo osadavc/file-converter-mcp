@@ -3,9 +3,12 @@ import {
   isImageMimeType,
   resolveAudioTarget,
   isAudioMimeType,
+  resolveVideoTarget,
+  isVideoMimeType,
 } from "../lib/mime.ts";
 import { convertImageWithSharp } from "./imageConversion.ts";
 import { convertAudioWithFfmpeg } from "./audioConversion.ts";
+import { convertVideoWithFfmpeg } from "./videoConversion.ts";
 
 export type ConversionResult = {
   outputPath: string;
@@ -35,6 +38,14 @@ export const convertDispatch: Converter = async ({
     if (!target) throw new Error("Unsupported target audio MIME type");
 
     const outputPath = await convertAudioWithFfmpeg(sourcePath, target);
+    return { outputPath };
+  }
+
+  if (isVideoMimeType(sourceMimeType) && targetMimeType.startsWith("video/")) {
+    const target = resolveVideoTarget(targetMimeType);
+    if (!target) throw new Error("Unsupported target video MIME type");
+
+    const outputPath = await convertVideoWithFfmpeg(sourcePath, target);
     return { outputPath };
   }
 

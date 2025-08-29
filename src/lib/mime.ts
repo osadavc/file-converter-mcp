@@ -41,3 +41,86 @@ export const resolveAudioTarget = (mime: string): AudioTarget | undefined => {
 
 export const isAudioMimeType = (mime: string): boolean =>
   mime.startsWith("audio/");
+
+export type VideoTarget = {
+  ext: string;
+  encoderArgs?: string[];
+};
+
+export const resolveVideoTarget = (mime: string): VideoTarget | undefined => {
+  const map: Record<string, VideoTarget> = {
+    "video/mp4": {
+      ext: "mp4",
+      encoderArgs: [
+        "-c:v",
+        "libx264",
+        "-preset",
+        "medium",
+        "-crf",
+        "23",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "192k",
+      ],
+    },
+    "video/webm": {
+      ext: "webm",
+      encoderArgs: [
+        "-c:v",
+        "libvpx-vp9",
+        "-b:v",
+        "0",
+        "-crf",
+        "32",
+        "-c:a",
+        "libopus",
+        "-b:a",
+        "128k",
+      ],
+    },
+    "video/ogg": {
+      ext: "ogv",
+      encoderArgs: [
+        "-c:v",
+        "libtheora",
+        "-q:v",
+        "7",
+        "-c:a",
+        "libvorbis",
+        "-q:a",
+        "5",
+      ],
+    },
+    "video/x-matroska": {
+      ext: "mkv",
+      encoderArgs: [
+        "-c:v",
+        "libx264",
+        "-crf",
+        "23",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "192k",
+      ],
+    },
+    "video/quicktime": {
+      ext: "mov",
+      encoderArgs: [
+        "-c:v",
+        "libx264",
+        "-crf",
+        "23",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "192k",
+      ],
+    },
+  };
+  return map[mime];
+};
+
+export const isVideoMimeType = (mime: string): boolean =>
+  mime.startsWith("video/");

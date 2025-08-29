@@ -14,7 +14,9 @@ export const detectSourceMime = async (
   const detected = mime.lookup(sourcePath);
   if (
     detected &&
-    (detected.startsWith("image/") || detected.startsWith("audio/"))
+    (detected.startsWith("image/") ||
+      detected.startsWith("audio/") ||
+      detected.startsWith("video/"))
   )
     return detected;
 

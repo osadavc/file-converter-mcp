@@ -8,5 +8,5 @@ This is a file converter MCP.
 
 - [x] Images (jpeg, png, webp, avif, tiff)
 - [x] Audio (mp3, wav, ogg, webm, flac, aac/m4a)
-- [ ] Video
+- [x] Video (mp4/h264+aac, webm/vp9+opus, ogv/theora+vorbis, mkv/h264+aac, mov/h264+aac)
 - [ ] Documents
